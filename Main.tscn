@@ -88,8 +88,4 @@ player_path = NodePath("../Player")
 
 position = Vector2( 0, 223.468 )
 
-[node name="Plataform2" parent="." index="4" instance=ExtResource( 5 )]
-
-position = Vector2( 114.831, 51.2219 )
-
 
