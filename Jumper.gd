@@ -16,7 +16,11 @@ func _process(delta):
 	if right_key:
 		set_linear_velocity(Vector2(speed, get_linear_velocity().y))
 		
+#	if !left_key and !right_key:
+#		set_linear_velocity(Vector2(0, get_linear_velocity().y))
+
+
 func collision(body):
-	if body.is_in_group('paddles'):
+	if body.is_in_group('paddles') and get_linear_velocity().y > 0:
 		set_linear_velocity(Vector2(0,-jump_speed))
 	pass
