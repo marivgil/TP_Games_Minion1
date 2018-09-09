@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pez.png-19cf49047a75c1342b92a3c4eef847a8.stex"
+path="res://.import/5f2e8bb9837ac966fe4346387082d346.png-102c1a52a25004f658c2e2334e5e0f4e.stex"
 
 [deps]
 
-source_file="res://pez.png"
-dest_files=[ "res://.import/pez.png-19cf49047a75c1342b92a3c4eef847a8.stex" ]
+source_file="res://5f2e8bb9837ac966fe4346387082d346.png"
+dest_files=[ "res://.import/5f2e8bb9837ac966fe4346387082d346.png-102c1a52a25004f658c2e2334e5e0f4e.stex" ]
 
 [params]
 

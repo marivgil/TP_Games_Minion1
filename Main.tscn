@@ -1,82 +1,90 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://Bouncy_Platform_Medium.png" type="Texture" id=2]
-[ext_resource path="res://Jumper.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Jumper.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Jumper.gd" type="Script" id=3]
+[ext_resource path="res://HD-Nice-Black-Background.png" type="Texture" id=4]
+[ext_resource path="res://Plataform.tscn" type="PackedScene" id=5]
 
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
-
-[node name="Node" type="Node" index="0"]
+[node name="World" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="0"]
+[node name="Player" parent="." index="0" instance=ExtResource( 2 )]
 
-editor/display_folded = true
-position = Vector2( 250.527, 367.44 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform", "Visibility", "Z Index" ]
-__meta__ = {
-"_edit_group_": true
-}
+gravity_scale = 7.0
+script = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="StaticBody2D" index="0"]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="1"]
 
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
-_sections_unfolded = [ "Animation", "Material", "Offset", "Pause", "Region", "Transform", "Visibility", "Z Index" ]
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="1"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
 
-position = Vector2( 0.622, -1.20311 )
-scale = Vector2( 3.928, 1.09255 )
-shape = SubResource( 1 )
-_sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
+motion_scale = Vector2( 1, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 500, 800 )
+_sections_unfolded = [ "Motion" ]
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." index="1"]
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer" index="0"]
 
-editor/display_folded = true
-position = Vector2( 392.398, 490.48 )
-input_pickable = false
-collision_layer = 16384
-collision_mask = 1
-constant_linear_velocity = Vector2( 1, 1 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform", "Visibility", "Z Index" ]
-__meta__ = {
-"_edit_group_": true
-}
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -338.0
+margin_top = -406.0
+margin_right = 1582.0
+margin_bottom = 2255.0
+rect_scale = Vector2( 0.3, 0.3 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 0
 
-[node name="Sprite" type="Sprite" parent="StaticBody2D2" index="0"]
+[node name="Camera2D" type="Camera2D" parent="." index="2"]
 
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
-_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Drag Margin", "Limit" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="1"]
+[node name="Plataform" parent="." index="3" instance=ExtResource( 5 )]
 
-position = Vector2( 0.622, -1.20311 )
-scale = Vector2( 3.928, 1.09255 )
-shape = SubResource( 1 )
-
-[node name="KinematicBody2D" parent="." index="2" instance=ExtResource( 3 )]
-
-position = Vector2( 250, 100 )
-mass = 2.0
-friction = 0.0
-gravity_scale = 20.0
-_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Pickable", "Transform" ]
+position = Vector2( 0, 223.468 )
 
 
