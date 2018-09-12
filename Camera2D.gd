@@ -9,7 +9,11 @@ func _ready():
 	pass
 
 func _process(delta):
+	get_node("Node2D/ScoreLabel").set_text(String(get_score()))
 	var player_post = player.get_position().y
 	if player_post < get_position().y:
 		set_position(Vector2(0, player_post))
 	pass
+
+func get_score():
+	return int(get_global_position().y * -1)
