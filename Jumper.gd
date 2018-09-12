@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var world = "res://Scenes/World.tscn"
+var world = "res://Main.tscn"
 
 export(NodePath) var camera_path
 var camera
@@ -11,7 +11,7 @@ var jump_speed = 600
 var speed = 300
 
 func _ready():
-	#_fixed_process(true)
+	camera = get_node(camera_path)
 	height = get_viewport().get_visible_rect().size.y
 	width = get_viewport().get_visible_rect().size.x
 	pass
@@ -34,6 +34,6 @@ func collision(body):
 		set_linear_velocity(Vector2(0,-jump_speed))
 	pass
 
-func exit_screen():
-	if get_position().y > camera.get_position().y:
-		get_tree().change_scene(world)
+func _on_VisibilityNotifier2D_screen_exited():
+	#if get_global_position().y > camera.get_position().y:
+	get_tree().change_scene(world)
